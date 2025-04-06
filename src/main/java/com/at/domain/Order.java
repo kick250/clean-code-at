@@ -40,6 +40,6 @@ public class Order {
     }
 
     public boolean isFreeFreight() {
-        return freightType.equals("ECO") && weight < 2;
+        return freightType.getFreightName().equals("ECO") && weight < 2;
     }
 }
