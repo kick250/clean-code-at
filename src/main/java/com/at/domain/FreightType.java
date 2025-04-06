@@ -13,8 +13,13 @@ public enum FreightType {
         public FreightCalculator getCalculator() {
             return new DefaultFreight();
         }
+
+        @Override
+        public boolean isEconomic() {
+            return false;
+        }
     },
-    ECONOMIC {
+    ECONOMIC() {
         @Override
         public String getFreightName() {
             return "ECO";
@@ -24,8 +29,13 @@ public enum FreightType {
         public FreightCalculator getCalculator() {
             return new EconomicFreight();
         }
+
+        @Override
+        public boolean isEconomic() {
+            return true;
+        }
     },
-    EXPRESS {
+    EXPRESS() {
         @Override
         public String getFreightName() {
             return "EXP";
@@ -35,9 +45,16 @@ public enum FreightType {
         public FreightCalculator getCalculator() {
             return new ExpressFreight();
         }
+
+        @Override
+        public boolean isEconomic() {
+            return false;
+        }
     };
 
     public abstract String getFreightName();
 
     public abstract FreightCalculator getCalculator();
+
+    public abstract boolean isEconomic();
 }

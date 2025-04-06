@@ -1,11 +1,13 @@
 package com.at.services;
 
+import com.at.domain.FreightType;
 import com.at.domain.Order;
 import com.at.interfaces.FreightCalculator;
 
 public class SampleService {
     private FreightCalculator freightCalculator;
     private Order order;
+    private Double freightValue;
 
     public static SampleService build(Order order) {
         FreightCalculator freightCalculator = order.getFreightType().getCalculator();
@@ -27,6 +29,9 @@ public class SampleService {
     }
 
     private double calculateFreight() {
-        return freightCalculator.calculateFreight(order);
+        if (freightValue == null)
+            freightValue = freightCalculator.calculateFreight(order);
+
+        return freightValue;
     }
 }
